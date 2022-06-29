@@ -17,15 +17,15 @@ Step1: Input the file 'gene_exp.txt' and 'GRN.txt';
 
 Step2: Run 'MDIC3_CCC.py';
 
-Step3: Output the result file 'CCC_results.txt';
+Step3: Output the result file 'CCC_results.txt'.
 
-The file 'CCC_results.txt' is cell-cell communication network adjacency matrix among the 20 cells in 'gene_exp.txt'.
+The output file 'CCC_results.txt' is cell-cell communication network adjacency matrix among the 20 cells in 'gene_exp.txt'.
 
 Step4: Input the file 'cell_label.txt'and 'CCC_results.txt';
 
-Step5: Run 'MDIC3_type.py'
+Step5: Run 'MDIC3_type.py';
 
-Step6: Output the file 'type_results.txt'
+Step6: Output the result file 'type_results.txt'.
 
-The file 'type_results.txt' is communication network among different cell types in 'cell_label.txt'.
+The output file 'type_results.txt' is communication network among different cell types in 'cell_label.txt'.
 
