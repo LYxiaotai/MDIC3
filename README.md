@@ -3,7 +3,7 @@ MDIC3 (Matrix Decomposition to Infer Cell-Cell Communication) is a method for in
 
 The "MDIC3_CCC.py" can be used to construct the cell-cell communication network.
 
-The "MDIC3_type.py" can be used to further construct the communication network among cell types.
+The "MDIC3_type.py" can be used to construct the communication network among cell types.
 
 There is a simple example below:
 
