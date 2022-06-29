@@ -27,5 +27,5 @@ Step5: Run 'MDIC3_type.py';
 
 Step6: Output the result file 'type_results.txt'.
 
-The output file 'type_results.txt' is communication network among different cell types in 'cell_label.txt'.
+The output file 'type_results.txt' is communication network among different cell types in 'cell_label.txt' and 'gene_exp.txt'.
 
