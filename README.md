@@ -79,3 +79,6 @@ We use two calculation pathways to calculate the cell-cell communications result
 The GRN.txt is the GRN adjacency matrix calculation results for the input single-cell gene expression data.
 
     python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=GRN.txt -out=target
+    
+## Visualize the MDIC3 inference results
+
