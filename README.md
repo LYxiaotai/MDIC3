@@ -1,12 +1,57 @@
-# MDIC3: Matrix Decomposition to Infer Cell-Cell Communication
+# MDIC3
+
+## Matrix Decomposition to Infer Cell-Cell Communication
 
 ![image1](https://github.com/LYxiaotai/MDIC3/blob/main/Fig1_20221017.jpg)
 
 We proposed a new method MDIC3 (Matrix Decomposition to Infer Cell-Cell Communication) to reveal cell-cell communication from cooperation of gene regulatory network and matrix decomposition based on scRNA-seq data independent of prior knowledge, and it means the inference of cell-cell communication is no longer limited to special species and does not rely on specific L-R interactions or signaling pathways. MDIC3 can accomplish the inference of intercellular communication networks from individual cells to cell types based on existing cell classification labels. 
 
-The "MDIC3_CCC.py" can be used to construct the cell-cell communication network.
+## How to use MDIC3
 
-The "MDIC3_type.py" can be used to construct the communication network among cell types.
+This tutorial is the example analysis with MDIC3 on a test single-cell gene expression profile that contains 39 genes, 20 cells, 3 cell types.
+
+### Required input data
+
+MDIC3 requires two types of input data:
+
+#### 1. single-cell gene expression data, e.g., gene_exp.txt in ....
+
+  ● The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
+
+  ● Note that the first row of the single-cell gene expression data must only contains cell names but not contains a header field. 
+
+#### 2. scRNAseq metadata, e.g., cell_label.txt in ...
+
+  ● The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
+
+  ● Note that the first column of the scRNAseq metadata should match exactly with the first row of the single-cell gene expression data.
+
+We suggest the users to check the two types of input data carefully before running MDIC3. 
+
+We suggest the users to input the single cell gene expression data containing at least 10 cells.
+
+### Inference of cell-cell communication using MDIC3
+
+The "MDIC3.py" can be used to infer cell-cell communications, and the parameter is shown below:
+
+usage1: 
+      python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='other' -grn=grn_file -out=results_output_fold
+
+usage2:
+      python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process= process_value -step=GRN_calculation_step -out=results_output_fold
+    
+Options and arguments:
+    -exp: the input single-cell expression profile
+    -label: cell labels for each cell
+    -grnchosse: availability of gene regulatory networks
+    -grn: if grnchoose =='other', the user must provide the gene regulatory network adjacency matrix txt file.
+    -process: if grnchoose =='GNIPLR', the user must select the number of work processes used.
+    -step: if grnchoose =='GNIPLR', the user must select the step size for GNIPLR block calculation.
+    -out: the directory to store the MDIC3 results    
+
+
+
+
 
 There is a simple example below:
 
