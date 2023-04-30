@@ -2,6 +2,7 @@
 
 ## Matrix Decomposition to Infer Cell-Cell Communication
 
+![image](https://github.com/LYxiaotai/MDIC3/blob/main/Fig1_20221017.tif)
 
 MDIC3 (Matrix Decomposition to Infer Cell-Cell Communication) is a method for inferring cell-cell communication.
 
