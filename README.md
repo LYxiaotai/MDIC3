@@ -30,17 +30,22 @@ We suggest the users to check the two types of input data carefully before runni
 
 We suggest the users to input the single cell gene expression data containing at least 10 cells.
 
-### Inference of cell-cell communication using MDIC3
+### MDIC3-Inference
+
+The core of MDIC3 is to infer the regulatory relationships among cells based on the regulatory relationships among genes. MDIC3 utilizes GRNs to extract gene regulatory information. We used the GNIPLR algorithm (Gene networks inference based on projection and lagged regression) to infer GRN in our paper. GNIPLR projected gene data twice using the LASSO projection algorithm and the linear projection approximation to produce a linear and monotonous pseudo-time series, and then determined the direction of regulation in combination with lagged regression analyses. You can find more details of GNIPLR in the original article (doi: 10.1093/bioinformatics/btab099). It should be noted that the MDIC3 is not limited to GNIPLR. Any tool that infers gene regulatory networks can be used for MDIC3.
 
 The "MDIC3.py" can be used to infer cell-cell communications, and the parameter is shown below:
 
-usage1: 
-      python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='other' -grn=grn_file -out=results_output_fold
+usage1:
+
+    python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='other' -grn=grn_file -out=results_output_fold
 
 usage2:
-      python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process= process_value -step=GRN_calculation_step -out=results_output_fold
+
+    python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process= process_value -step=GRN_calculation_step -out=results_output_fold
     
 Options and arguments:
+
     -exp: the input single-cell expression profile
     -label: cell labels for each cell
     -grnchosse: availability of gene regulatory networks
@@ -49,15 +54,9 @@ Options and arguments:
     -step: if grnchoose =='GNIPLR', the user must select the step size for GNIPLR block calculation.
     -out: the directory to store the MDIC3 results    
 
-
-
-
-
 There is a simple example below:
 
-The file 'gene_exp.txt' is a single-cell gene expression profile that contains 39 genes, 20 cells.
-
-The file 'GRN.txt' is gene regulatory network adjacency matrix among the 39 genes in 'gene_exp.txt'.
+The file 'gene_exp.txt' is a test single-cell gene expression profile that contains 39 genes, 20 cells.
 
 The file 'cell_label.txt' contains cell types informations for the 20 cells in 'gene_exp.txt'.
 
