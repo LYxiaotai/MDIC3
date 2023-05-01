@@ -46,7 +46,11 @@ Here, we provide two calculation pathways, the parameter is shown below:
 
 ``` python
 # Enter the following command line in the Python terminal
-python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process= process_value -step=GRN_calculation_step -out=results_output_fold
+python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process=process_value -step=GRN_calculation_step -out=results_output_fold
+
+# If the users want to save the results of the GRN calculation of GNIPLR, they can do so by adding -grnsave =='TRUE'
+python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process=process_value -step=GRN_calculation_step -grnsave='TRUE' -out=results_output_fold
+
 ```
 
 ##### usage2:  
