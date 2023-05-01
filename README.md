@@ -14,13 +14,13 @@ This tutorial is the example analysis with MDIC3 on a test single-cell gene expr
 
 MDIC3 requires two types of input data:
 
-#### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/test_data)
+#### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
 * Note that the first row of the single-cell gene expression data must only contains cell names but not contains a header field. 
 
-#### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/test_data)
+#### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
@@ -76,7 +76,7 @@ python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='ot
 
 * When users choose to calculate the GRN by using GNIPLR, considering that single cell gene expression data always contains a large number of genes and it will take a long time to compute the GRN, we have improved the computational process of GNIPLR through two paths to increasing the computational efficiency of GRN. One path is to use the Python-multiprocessing package process pool, where users should choose the number of processes according to their computer configuration， and the “multiprocessing” package is required. Another path is calculated by blocking the target GRN matrix. When the number of genes is less than 3000, users can set the '-step' parameter to the number of genes or a smaller value than the number of genes. When the number of genes is less than 3000, we suggest users set the '-step' parameter to a value of 3000 or less.
 
-* When users choose to import the GRN results calculated by other methods, users must provide the calculated GRN results, which must be a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/test_data)
+* When users choose to import the GRN results calculated by other methods, users must provide the calculated GRN results, which must be a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The output of MDIC3 consists of two txt files: 
 
@@ -93,7 +93,7 @@ The file 'gene_exp.txt' is a test single-cell gene expression data that contains
 
 The file 'cell_label.txt' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
 
-Users can choose two calculation pathways to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types, and the [results](https://github.com/LYxiaotai/MDIC3/tree/main/test_data/results) will be put in the "target" directory. 
+Users can choose two calculation pathways to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types, and the [results](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result) will be put in the "target" directory. 
 
 ##### usage1: 
 
@@ -120,7 +120,7 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=
 
 ## Visualize the MDIC3 inference results
 
-Here, we provide the human lesional skin dataset used in our paper, as well as the inferred results after applying MDIC3, and users can download the source data [here](). In particular, GRN_LS.txt is the GRN results calculated by GNIPLR and celltype_CCC.txt is the cell type communication results inferred by MDIC3. Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language code. The heatmap of the cell type communication results will be saved in plot.pdf.
+In our paper, we have analyzed the cell type communication of the human lesional skin dataset using MIDC3 and users can download the inferred results [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). celltype_CCC.txt is the cell type communication results inferred by MDIC3. Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language [code](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). The heatmap of the cell type communication results will be saved in [plot.pdf](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize).
 
 ```R
 library(pheatmap)
