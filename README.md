@@ -108,7 +108,7 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -pro
 
 ```
 
-The results inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. If '-grnsave==TRUE', an additional txt file '[GRN_GNIPLR.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be generated for saving the GRN adjacency matrix and put in your "target" directory.
+The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. If '-grnsave==TRUE', an additional txt file '[GRN_GNIPLR.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be generated for saving the GRN adjacency matrix and put in your "target" directory.
 
 
 
@@ -123,7 +123,7 @@ The results inluding '[celltype_communication.txt](https://github.com/LYxiaotai/
 python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=GRN.txt -out=target
 ```
 
-The [results](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result) inluding 'celltype_communication.txt' and 'cellular_communication.txt' will be put in your "target" directory. 
+The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. 
 
 
 ## Visualize the MDIC3 inference results
