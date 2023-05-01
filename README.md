@@ -102,7 +102,7 @@ Users can choose two calculation pathways to calculate the cell-cell communicati
 
 ``` python
 # Enter the following command line in the Python terminal
-python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -process=2 -step=39 -out=target
+python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -process=2 -step=15 -out=target
 
 ```
 
