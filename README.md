@@ -89,11 +89,11 @@ Note that if users choose to calculate the GRN by using GNIPLR, the user can cho
 
 #### There is a simple example below:
 
-The file 'gene_exp.txt' is a test single-cell gene expression data that contains 39 genes, 20 cells.
+The file '[gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test single-cell gene expression data that contains 39 genes, 20 cells.
 
-The file 'cell_label.txt' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
+The file '[cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
 
-Users can choose two calculation pathways to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types, and the [results](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result) will be put in your "target" directory. 
+Users can choose two calculation pathways to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
 
 ##### usage1: 
 
@@ -103,8 +103,14 @@ Users can choose two calculation pathways to calculate the cell-cell communicati
 ``` python
 # Enter the following command line in the Python terminal
 python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -process=2 -step=15 -out=target
+# If the users want to save the results of the GRN calculation of GNIPLR, they can do so by adding -grnsave =='TRUE'
+python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -process=2 -step=15 -grnsave='TRUE' -out=target
 
 ```
+
+The results inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. If '-grnsave==TRUE', an additional txt file '[GRN_GNIPLR.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be generated for saving the GRN adjacency matrix and put in your "target" directory.
+
+
 
 ##### usage2: 
 
@@ -116,6 +122,8 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -pro
 # Enter the following command line in the Python terminal
 python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=GRN.txt -out=target
 ```
+
+The [results](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result) inluding 'celltype_communication.txt' and 'cellular_communication.txt' will be put in your "target" directory. 
 
 
 ## Visualize the MDIC3 inference results
