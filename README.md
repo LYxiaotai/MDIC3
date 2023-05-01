@@ -80,9 +80,9 @@ python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='ot
 
 * The output of MDIC3 consists of two txt files: 
 
-1) 'celltype_communication.txt' is the results of communication among different cell types.
+1) 'celltype_communication.txt' is the result of communication among different cell types, while the first column and the first row represent different cell labels. More specifically, the value in row i and column j indicates the strength of the communication signal sent from the i-th cell type and received by the j-th cell type.
 
-2) 'cellular_communication.txt' is the results of communication among single cells.
+2) 'cellular_communication.txt' is the result of communication among single cells. This is a file that only contains the numeric matrix of the results of communication results among single cells. If the value in row i and column j is greater than 0, it means that the communication signal is sent from the i-th cell and received by the j-th cell. If the value in row i and column j is less than 0, it means that the communication signal is sent from the j-th cell and received by the i-th cell. The absolute value of the value in row i and column j indicates the communication strength between cell i and cell j.
 
 Note that if users choose to calculate the GRN by using GNIPLR, the user can choose whether or not to save the GRN calculation results. If '-grnsave==TRUE', an additional txt file will be generated for saving the GRN adjacency matrix. Note that when the user selects '-grnsave==true', the GRN results file to be saved will be very large, a GRN file containing 20,000 genes may require 10G of storage space. We recommend that users select a storage location with sufficient storage space.
 
@@ -120,7 +120,8 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=
 
 ## Visualize the MDIC3 inference results
 
-In our paper, we have analyzed the cell type communication of the human lesional skin dataset using MIDC3 and users can download the inferred results [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). The celltype_CCC.txt is the cell type communication results inferred by MDIC3. Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language [code](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). The heatmap of the cell type communication results will be saved in [plot.pdf](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize).
+In our paper, we have analyzed the cell type communication of the human lesional skin dataset using MIDC3 and users can download the MDIC3 inferred cell type communication results 'celltype_CCC.txt' [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language [code](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). The heatmap of the cell type communication results will be saved in [plot.pdf](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). Red-marked parts of the plot indicate significant communication between the two cell types, while the blue-marked parts indicate less significant communication between the two cell types. For example, the square in the first row and the third column of plot.pdf is marked in red, indicating significant communications among inflame_FIB and CDC2 in the predicted results of MDIC3.
+
 
 ```R
 library(pheatmap)
@@ -146,6 +147,3 @@ pheatmap(df,
          width = 7,height = 6.5,   # users can choose another size of the image to be saved
          filename = 'plot.pdf')
 ```
-
-
-
