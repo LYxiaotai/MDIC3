@@ -93,7 +93,7 @@ The file 'gene_exp.txt' is a test single-cell gene expression data that contains
 
 The file 'cell_label.txt' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
 
-Users can choose two calculation pathways to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types, and the [results](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result) will be put in the "target" directory. 
+Users can choose two calculation pathways to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types, and the [results](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result) will be put in your "target" directory. 
 
 ##### usage1: 
 
@@ -120,7 +120,7 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=
 
 ## Visualize the MDIC3 inference results
 
-In our paper, we have analyzed the cell type communication of the human lesional skin dataset using MIDC3 and users can download the inferred results [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). celltype_CCC.txt is the cell type communication results inferred by MDIC3. Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language [code](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). The heatmap of the cell type communication results will be saved in [plot.pdf](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize).
+In our paper, we have analyzed the cell type communication of the human lesional skin dataset using MIDC3 and users can download the inferred results [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). The celltype_CCC.txt is the cell type communication results inferred by MDIC3. Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language [code](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). The heatmap of the cell type communication results will be saved in [plot.pdf](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize).
 
 ```R
 library(pheatmap)
