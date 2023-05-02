@@ -42,7 +42,7 @@ Here, we provide two calculation pathways, the parameter is shown below:
 
 ##### usage1:
 
-* user can choose to first calculate the GRN using GNIPLR and then calculate the cell-cell communication results. 
+* users can choose to first calculate the GRN using GNIPLR and then calculate the cell-cell communication results. 
 
 ``` python
 # Enter the following command line in the Python terminal
@@ -55,7 +55,7 @@ python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GN
 
 ##### usage2:  
 
-* user can also choose to first import the GRN results calculated by other methods and then calculate cell-cell communication results.
+* users can also choose to first import the GRN results calculated by other methods and then calculate cell-cell communication results.
 
 ``` python
 # Enter the following command line in the Python terminal
