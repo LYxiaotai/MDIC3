@@ -18,13 +18,26 @@ MDIC3 requires two types of input data:
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
-* Note that the first row of the single-cell gene expression data must only contains cell names but not contains a header field. 
+* Note that the first row of the single-cell gene expression data must only contains cell names but not contains a header field. An example snapshot of the input single-cell gene expression data format is shown below.
+
+||cell1|cell2|cell3|...|
+|-:|:-:|:-:|:-:|:-|
+|**Gene1**|3.402|0|8.2|...|
+|**Gene2**|1.307|1.012|9.239|...|
+|**Gene3**|0|6.051|0|...|
+|...|...|...|...|...|
 
 #### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
-* Note that the first column of the scRNAseq metadata should match exactly with the first row of the single-cell gene expression data.
+* Note that the first column of the scRNAseq metadata should match exactly with the first row of the single-cell gene expression data. An example snapshot of the input scRNAseq metadata format is shown below.
+
+|cell1|Cell-type1|
+|-:|:-|
+|**cell2**|**Cell-type1**|
+|**cell3**|**Cell-type2**|
+|...|...|
 
 We suggest the users to check the two types of input data carefully before running MDIC3. 
 
