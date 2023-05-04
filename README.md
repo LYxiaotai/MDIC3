@@ -2,7 +2,7 @@
 
 ## Matrix Decomposition to Infer Cell-Cell Communication
 
-![image1](https://github.com/LYxiaotai/MDIC3/blob/main/Fig1_20221017.jpg)
+![image1](https://github.com/LYxiaotai/MDIC3/blob/main/Fig1.jpg)
 
 We proposed a new method MDIC3 (Matrix Decomposition to Infer Cell-Cell Communication) to reveal cell-cell communication from cooperation of gene regulatory network (GRN) and matrix decomposition based on scRNA-seq data independent of prior knowledge, and it means the inference of cell-cell communication is no longer limited to special species and does not rely on specific L-R interactions or signaling pathways. MDIC3 can accomplish the inference of intercellular communication networks from individual cells to cell types based on existing cell classification labels. 
 
