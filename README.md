@@ -51,7 +51,7 @@ The core of MDIC3 is to infer the regulatory relationships among cells based on 
 
 It should be noted that the MDIC3 is not limited to GNIPLR. Any tool that infers gene regulatory networks can be used for MDIC3.
 
-Here, we provide two calculation pathways, the parameter is shown below:
+Here, we provide two calculation choices, the parameter is shown below:
 
 ##### usage1:
 
@@ -106,7 +106,7 @@ The file '[gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_
 
 The file '[cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
 
-Users can choose two calculation pathways to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
+Users can choose two calculation choices to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
 
 ##### usage1: 
 
