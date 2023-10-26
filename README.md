@@ -175,7 +175,7 @@ pheatmap(df,
 
 The main purpose of applying cell-cell communication analysis is to explain the cell functions through L-R pairs. In our paper, we use a simple method to extract L-R pairs from cell-cell communication.
 
-#### The "[LRidentify.py]()" can be used to extract L-R pairs from cell-cell communication.
+#### The "[MDIC3_LR.py]()" can be used to extract L-R pairs from cell-cell communication.
 
 #### Required input data
 
@@ -212,11 +212,25 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 
 * Note that if a ligand corresponds to a subunit architecture receptor, e.g. IL6 receptors IL6R and IL6ST, it is represented in the format "L - (R1+R2)".
 
-  |interaction_name|
-|-:|:-|
-|**L1 - R1**|
-|**L1 - R2**|
-|**L2 - (R3+R4)**|
-|...|...|
-
 * Considering that CellChatDB L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper. 
+
+#### usage:
+
+* Note that the cell type name you write into the command must correspond to the cell type name contained in your scRNAseq metadata file
+
+``` python
+# Enter the following command line in the Python terminal
+python MDIC3_LR.py -exp='sc_exp.txt' -label='sc_meta.txt' -lrdb='LR_human.txt' -ltype='celltype1' -rtype='celltype2' -out=target
+```
+
+##### Options and arguments:
+
+    -exp: the input single-cell gene expression data.
+    -label: the input scRNAseq metadata.
+    -lrdb: the input ligand-receptor information file.
+    -ltype: the cell type name that sends cell-cell communication signals during the target communication progress you want to analyze.
+    -rtype: the cell type name that receives cell-cell communication signals during the target communication progress you want to analyze.
+    -out: the directory to store the L-R identification results. 
+
+* The output of MDIC3_LR.py is a txt file that includes the L-R pairs involved in the cellular communication process you entered. The output file also contains the Pearson correlation coefficients and significance p-values corresponding to each L-R pair.
+
