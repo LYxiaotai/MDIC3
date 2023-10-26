@@ -204,7 +204,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 |**cell3**|**Cell-type2**|
 |...|...|
 
-##### 3. ligand-receptor information, e.g., [humanDB.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data)
+##### 3. ligand-receptor information, e.g., [LR_human.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data)
 
 * The ligand-receptor information must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column.
 
