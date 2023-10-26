@@ -177,9 +177,9 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 
 #### The "[LRidentify.py]()" can be used to extract L-R pairs from cell-cell communication.
 
-##### Required input data
+#### Required input data
 
-###### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+##### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -192,7 +192,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-###### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+##### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
@@ -204,3 +204,19 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 |**cell3**|**Cell-type2**|
 |...|...|
 
+##### 3. ligand-receptor information, e.g., [LR_human.txt]()
+
+* The ligand-receptor information must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column.
+
+* The file contains only a single column of data with a column name. Each row represents a pair of ligand-receptor pairs, recorded in the format "L - R".
+
+* Note that if a ligand corresponds to a subunit architecture receptor, e.g. IL6 receptors IL6R and IL6ST, it is represented in the format "L - (R1+R2)".
+
+  |interaction_name||
+|-:|:-|
+|**L1 - R1**||
+|**L1 - R2**||
+|**L2 - (R3+R4)**||
+|...|...|
+
+* Considering that CellChatDB L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper. 
