@@ -232,5 +232,5 @@ python MDIC3_LR.py -exp='sc_exp.txt' -label='sc_meta.txt' -lrdb='LR_human.txt' -
     -rtype: the cell type name that receives cell-cell communication signals during the target communication progress you want to analyze.
     -out: the directory to store the L-R identification results. 
 
-* The output of MDIC3_LR.py is a txt file that includes the L-R pairs involved in the cellular communication process you entered. The output file also contains the Pearson correlation coefficients and significance p-values corresponding to each L-R pair.
+* The output of MDIC3_LR.py will be put in your "target" directory. The output file is a txt file named 'target_LR' that includes the L-R pairs involved in the cellular communication process you entered. The output file also contains the Pearson correlation coefficients and significance p-values corresponding to each L-R pair.
 
