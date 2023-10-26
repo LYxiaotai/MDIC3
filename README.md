@@ -212,7 +212,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 
 * Note that if a ligand corresponds to a subunit architecture receptor, e.g. IL6 receptors IL6R and IL6ST, it is represented in the format "L - (R1+R2)".
 
-* Considering that CellChatDB L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper. 
+* Considering that CellChatDB L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper. You can download [here](https://github.com/LYxiaotai/MDIC3/tree/main/data).
 
 #### usage:
 
