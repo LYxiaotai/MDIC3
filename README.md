@@ -175,7 +175,7 @@ pheatmap(df,
 
 The main purpose of applying cell-cell communication analysis is to explain the cell functions through L-R pairs. In our paper, we use a simple method to extract L-R pairs from cell-cell communication.
 
-#### The "[MDIC3_LR.py]()" can be used to extract L-R pairs from cell-cell communication.
+#### The "[MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main)" can be used to extract L-R pairs from cell-cell communication.
 
 #### Required input data
 
