@@ -201,7 +201,7 @@ if __name__ == '__main__':
 
 ##### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
 
-* When users choose to import the GRN results calculated by other methods, users must provide the calculated GRN results, which can be a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+* When users choose to import the GRN results calculated by other methods. If there is a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
   
 ``` python
 
