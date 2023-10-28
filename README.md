@@ -146,7 +146,7 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 
 #### 2.2 Choice2: Use the MDIC3 Python package to infer cell-cell communications.
 
-* The MDIC3 Python package also provides two choices to obtain the GRN.
+* 2.2.1 The MDIC3 Python package also provides two choices to obtain the GRN.
   
 (1) Users can choose to first calculate the GRN using GNIPLR and then infer the cell-cell communication, the function is "lucky.GRN_GNIPLR(AA, gene_exp, step, process)":
 
@@ -158,14 +158,16 @@ process：the user must select the number of work processes used.
 (2) Users can also choose to import the GRN results calculated by other methods. 
 
   
-* Users can use the function "lucky.MDIC3_score(AA, GRN, labels, label_index)" to infer the cell-cell communications:
+* 2.2.2 Users can use the function "lucky.MDIC3_score(AA, GRN, labels, label_index)" to infer the cell-cell communications:
 
 AA：the matrix of single-cell gene expression data.
 GRN:
 labels：
 Label_index：
 
-* The output of this function including the result of communication among single cells and the result of communication among different cell types. User can save the inferred results using the function "lucky.MDIC3_scoresave(ccc_adjacency, type_adjacency, labels)"
+The output of this function including the result of communication among single cells and the result of communication among different cell types. 
+
+* 2.2.3 User can save the inferred results using the function "lucky.MDIC3_scoresave(ccc_adjacency, type_adjacency, labels)" (optional)
 
 
 #### There is a simple example below:
