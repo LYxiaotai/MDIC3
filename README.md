@@ -8,6 +8,19 @@ We proposed a new method MDIC3 (Matrix Decomposition to Infer Cell-Cell Communic
 
 ## How to use MDIC3
 
+We provide two ways to use MDIC3:
+1. You can download the [MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main) and [MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main) and enter the command line in the Python terminal.
+2. You can download the MDIC3 Python package to use the MDIC3 algorithm. MDIC3 Python package can be easily installed:
+``` python
+
+pip install MDIC3
+
+```
+
+   
+
+## Way1: Download the [MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main) and [MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main)
+
 This tutorial is the example analysis with MDIC3 on a test single-cell gene expression profile that contains 39 genes, 20 cells, 3 cell types.
 
 ### Required input data
@@ -139,38 +152,6 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=
 The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. 
 
 
-## Visualize the MDIC3 inference results
-
-After obtaining the output of MDIC3.py, the 'celltype_communication.txt' can be used to visualize. We provide an R script for plotting the heatmap of the cell type communication results and users can download the script file [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). 
-
-In our paper, we have analyzed the cell type communication of the human lesional skin dataset using MIDC3. We use the inferred results from this dataset as an example to further illustrate how to do visualization for the inference results. Users can download the MDIC3 inferred cell type communications results of the human lesional skin dataset 'celltype_CCC.txt' [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language code. The heatmap of the cell type communication results will be saved in [plot.pdf](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). Red-marked parts of the plot indicate significant communication between the two cell types, while the blue-marked parts indicate less significant communication between the two cell types. For example, the square in the first row and the third column of plot.pdf is marked in red, indicating significant communications among inflame_FIB and cDC2 in the predicted results of MDIC3.
-
-
-```R
-library(pheatmap)
-library(grid)
-df<-read.table("celltype_CCC.txt",header=T,row.names = 1)
-df1<-data.matrix(df)
-max1<-round(max(df1),2)
-min1<-round(min(df1),2)
-mean1<-round(mean(df1),2)
-step1 = 0.001
-bk <- c(seq(min1,mean1,by=step1),seq(mean1+step1,max1,by=step1))
-bk1 = seq(min1,mean1,by=step1)
-bk2 = seq(mean1+step1,max1,by=step1)
-pheatmap(df,
-         scale = "none",
-         color = c(colorRampPalette(colors = c("Blue","white"))(length(bk1)),colorRampPalette(colors = c("white","red"))(length(bk2))),
-         legend = TRUE,
-         legend_breaks=seq(min1,max1,mean1-min1),   
-         legend_labels=c(min1,mean1,max1),
-         breaks=bk,
-         cluster_rows=FALSE,
-         cluster_cols=FALSE,
-         width = 7,height = 6.5,   # users can choose another size of the image to be saved
-         filename = 'plot.pdf')
-```
-
 ## Identify L-R pairs from cell-cell communication
 
 The main purpose of applying cell-cell communication analysis is to explain the cell functions through L-R pairs. In our paper, we use a simple method to extract L-R pairs from cell-cell communication.
@@ -179,7 +160,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 
 #### Required input data
 
-##### 1. single-cell gene expression data, e.g., [LS_testexp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+##### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -192,7 +173,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-##### 2. scRNAseq metadata, e.g., [LS_labels.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+##### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
@@ -234,4 +215,42 @@ python MDIC3_LR.py -exp='gene_exp.txt' -label='cell_label.txt' -lrdb='LR_human.t
     -out: the directory to store the L-R identification results. 
 
 * The output of MDIC3_LR.py will be put in your "target" directory. The output file is a txt file named 'target_LR' that includes the L-R pairs involved in the cellular communication process you entered. The output file also contains the Pearson correlation coefficients and significance p-values corresponding to each L-R pair.
+
+
+
+
+
+
+## Visualize the MDIC3 inference results
+
+After obtaining the output of MDIC3.py, the 'celltype_communication.txt' can be used to visualize. We provide an R script for plotting the heatmap of the cell type communication results and users can download the script file [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). 
+
+In our paper, we have analyzed the cell type communication of the human lesional skin dataset using MIDC3. We use the inferred results from this dataset as an example to further illustrate how to do visualization for the inference results. Users can download the MDIC3 inferred cell type communications results of the human lesional skin dataset 'celltype_CCC.txt' [here](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). Users can visualize the results of cell type communications of the human lesional skin dataset by using the following R language code. The heatmap of the cell type communication results will be saved in [plot.pdf](https://github.com/LYxiaotai/MDIC3/tree/main/Visualize). Red-marked parts of the plot indicate significant communication between the two cell types, while the blue-marked parts indicate less significant communication between the two cell types. For example, the square in the first row and the third column of plot.pdf is marked in red, indicating significant communications among inflame_FIB and cDC2 in the predicted results of MDIC3.
+
+
+```R
+library(pheatmap)
+library(grid)
+df<-read.table("celltype_CCC.txt",header=T,row.names = 1)
+df1<-data.matrix(df)
+max1<-round(max(df1),2)
+min1<-round(min(df1),2)
+mean1<-round(mean(df1),2)
+step1 = 0.001
+bk <- c(seq(min1,mean1,by=step1),seq(mean1+step1,max1,by=step1))
+bk1 = seq(min1,mean1,by=step1)
+bk2 = seq(mean1+step1,max1,by=step1)
+pheatmap(df,
+         scale = "none",
+         color = c(colorRampPalette(colors = c("Blue","white"))(length(bk1)),colorRampPalette(colors = c("white","red"))(length(bk2))),
+         legend = TRUE,
+         legend_breaks=seq(min1,max1,mean1-min1),   
+         legend_labels=c(min1,mean1,max1),
+         breaks=bk,
+         cluster_rows=FALSE,
+         cluster_cols=FALSE,
+         width = 7,height = 6.5,   # users can choose another size of the image to be saved
+         filename = 'plot.pdf')
+```
+
 
