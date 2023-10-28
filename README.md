@@ -8,7 +8,7 @@ We proposed a new method MDIC3 (Matrix Decomposition to Infer Cell-Cell Communic
 
 ## How to use MDIC3
 
-We provide two ways to use MDIC3:
+We provide two choices to use MDIC3:
 1. You can download the [MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main) and [MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main) and enter the command line in the Python terminal.
 2. You can download the MDIC3 Python package to use the MDIC3 algorithm. MDIC3 Python package can be easily installed:
 ``` python
@@ -16,18 +16,16 @@ We provide two ways to use MDIC3:
 pip install MDIC3
 
 ```
-
    
-
-## Way1: Download the [MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main) and [MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main)
+## Inference of cell-cell communication
 
 This tutorial is the example analysis with MDIC3 on a test single-cell gene expression profile that contains 39 genes, 20 cells, 3 cell types.
 
-### Required input data
+### 1. Required input data
 
 MDIC3 requires two types of input data:
 
-#### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (1). single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -40,7 +38,7 @@ MDIC3 requires two types of input data:
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-#### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (2). scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
@@ -56,10 +54,11 @@ We suggest the users to check the two types of input data carefully before runni
 
 We suggest the users to input the single cell gene expression data containing at least 10 cells.
 
-### MDIC3-Inference
+### 2. MDIC3-Inference
 
 The core of MDIC3 is to infer the regulatory relationships among cells based on the regulatory relationships among genes. MDIC3 utilizes GRNs to extract gene regulatory information. We used the [GNIPLR](https://github.com/zyllluck/GNIPLR) algorithm (Gene networks inference based on projection and lagged regression) to infer GRN in our paper. GNIPLR projected gene data twice using the LASSO projection algorithm and the linear projection approximation to produce a linear and monotonous pseudo-time series, and then determined the direction of regulation in combination with lagged regression analyses. You can find more details of GNIPLR in the original article [(doi: 10.1093/bioinformatics/btab099)](https://doi.org/10.1093/bioinformatics/btab099). 
   
+#### 2.1 Choice1: 
 #### The "[MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main)" can be used to infer cell-cell communications.
 
 It should be noted that the MDIC3 is not limited to GNIPLR. Any tool that infers gene regulatory networks can be used for MDIC3.
@@ -121,10 +120,7 @@ The file '[cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/tes
 
 Users can choose two calculation choices to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
 
-##### usage1: 
-
-* choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
-
+##### usage1: choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
 
 ``` python
 # Enter the following command line in the Python terminal
@@ -138,10 +134,7 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 
 
 
-##### usage2: 
-
-* choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
-
+##### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
 
 ``` python
 # The GRN.txt is the GRN adjacency matrix calculation results for the input single-cell gene expression data
@@ -150,6 +143,86 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=
 ```
 
 The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. 
+
+
+#### 2.2 Choice2: 
+#### Use the MDIC3 Python package to infer cell-cell communications.
+
+* 1. The MDIC3 Python package also provides two choices to obtain the GRN.
+* (1) Users can choose to first calculate the GRN using GNIPLR and then infer the cell-cell communication, the function is "lucky.GRN_GNIPLR(AA, gene_exp, step, process)":
+     AA：the matrix of single-cell gene expression data.
+     gene_exp: a python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary. 
+     step：the user must select the step size for GNIPLR block calculation.
+     process：the user must select the number of work processes used.
+* (2) Users can also choose to import the GRN results calculated by other methods. 
+  
+* 2. Users can use the function "lucky.MDIC3_score(AA, GRN, labels, label_index)" to infer the cell-cell communications:
+     AA：the matrix of single-cell gene expression data.
+     GRN: 
+     labels：the user must select the step size for GNIPLR block calculation.
+     Label_index：the user must select the number of work processes used.
+
+
+
+The output of the function including the result of communication among single cells and the result of communication among different cell types. User can save the inferred results using the function "lucky.MDIC3_scoresave".
+  
+* 
+
+More details can be found in 2.1 Choice1.
+
+#### There is a simple example below:
+
+##### usage1: choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
+
+``` python
+
+from MDIC3 import lucky
+if __name__ == '__main__':
+
+    AA, gene_exp, cellname = lucky.readexp('gene_exp.txt')
+    labels, label_index, label_cell = lucky.readlabel('cell_label.txt')
+
+    # calculate the GRN using GNIPLR
+    step = 5        # the user must select the step size for GNIPLR block calculation.
+    process = 2     # the user must select the number of work processes used.
+    GRN = lucky.GRN_GNIPLR(AA, gene_exp, step, process)
+
+    # Infer the cell-cell communication
+    ccc_adjacency, type_adjacency = lucky.MDIC3_score(AA, GRN, labels, label_index)
+
+    # User can save the inferred results using the following command
+    lucky.MDIC3_scoresave(ccc_adjacency, type_adjacency, labels)
+
+```
+
+##### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
+
+* When users choose to import the GRN results calculated by other methods, users must provide the calculated GRN results, which can be a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+  
+``` python
+
+from MDIC3 import lucky
+if __name__ == '__main__':
+
+    AA, gene_exp, cellname = lucky.readexp('gene_exp.txt')
+    labels, label_index, label_cell = lucky.readlabel('cell_label.txt')
+
+    # import the GRN calculated by other methods or tools
+    GRN = np.loadtxt(‘GRN.txt')
+
+    # Infer the cell-cell communication
+    ccc_adjacency, type_adjacency = lucky.MDIC3_score(AA, GRN, labels, label_index)
+
+    # User can save the inferred results using the following command
+    lucky.MDIC3_scoresave(ccc_adjacency, type_adjacency, labels)
+
+```
+
+
+
+
+
+
 
 
 ## Identify L-R pairs from cell-cell communication
