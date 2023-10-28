@@ -14,7 +14,7 @@ This tutorial is the example analysis with MDIC3 on a test single-cell gene expr
 
 MDIC3 requires two types of input data:
 
-#### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### 1. single-cell gene expression data, e.g., [LS_testexp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -27,7 +27,7 @@ MDIC3 requires two types of input data:
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-#### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### 2. scRNAseq metadata, e.g., [LS_labels.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
@@ -102,9 +102,9 @@ Note that if users choose to calculate the GRN by using GNIPLR, the user can cho
 
 #### There is a simple example below:
 
-The file '[gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test single-cell gene expression data that contains 39 genes, 20 cells.
+The file '[LS_testexp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test single-cell gene expression data that contains 39 genes, 20 cells.
 
-The file '[cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
+The file '[LS_labels.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
 
 Users can choose two calculation choices to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
 
@@ -179,7 +179,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 
 #### Required input data
 
-##### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+##### 1. single-cell gene expression data, e.g., [LS_testexp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -192,7 +192,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-##### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+##### 2. scRNAseq metadata, e.g., [LS_labels.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
