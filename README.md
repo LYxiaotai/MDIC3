@@ -58,8 +58,7 @@ We suggest the users to input the single cell gene expression data containing at
 
 The core of MDIC3 is to infer the regulatory relationships among cells based on the regulatory relationships among genes. MDIC3 utilizes GRNs to extract gene regulatory information. We used the [GNIPLR](https://github.com/zyllluck/GNIPLR) algorithm (Gene networks inference based on projection and lagged regression) to infer GRN in our paper. GNIPLR projected gene data twice using the LASSO projection algorithm and the linear projection approximation to produce a linear and monotonous pseudo-time series, and then determined the direction of regulation in combination with lagged regression analyses. You can find more details of GNIPLR in the original article [(doi: 10.1093/bioinformatics/btab099)](https://doi.org/10.1093/bioinformatics/btab099). 
   
-#### 2.1 Choice1: 
-#### The "[MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main)" can be used to infer cell-cell communications.
+#### 2.1 Choice1: Use the "[MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main)" to infer cell-cell communications.
 
 It should be noted that the MDIC3 is not limited to GNIPLR. Any tool that infers gene regulatory networks can be used for MDIC3.
 
@@ -145,30 +144,25 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=
 The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. 
 
 
-#### 2.2 Choice2: 
-#### Use the MDIC3 Python package to infer cell-cell communications.
+#### 2.2 Choice2: Use the MDIC3 Python package to infer cell-cell communications.
 
-* 1. The MDIC3 Python package also provides two choices to obtain the GRN.
+* The MDIC3 Python package also provides two choices to obtain the GRN.
+  
 * (1) Users can choose to first calculate the GRN using GNIPLR and then infer the cell-cell communication, the function is "lucky.GRN_GNIPLR(AA, gene_exp, step, process)":
-     AA：the matrix of single-cell gene expression data.
-     gene_exp: a python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary. 
-     step：the user must select the step size for GNIPLR block calculation.
-     process：the user must select the number of work processes used.
+*  AA：the matrix of single-cell gene expression data.
+*  gene_exp: a python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary.
+*  step：the user must select the step size for GNIPLR block calculation.
+*  process：the user must select the number of work processes used.
+  
 * (2) Users can also choose to import the GRN results calculated by other methods. 
   
-* 2. Users can use the function "lucky.MDIC3_score(AA, GRN, labels, label_index)" to infer the cell-cell communications:
-     AA：the matrix of single-cell gene expression data.
-     GRN: 
-     labels：the user must select the step size for GNIPLR block calculation.
-     Label_index：the user must select the number of work processes used.
+* Users can use the function "lucky.MDIC3_score(AA, GRN, labels, label_index)" to infer the cell-cell communications:
+* AA：the matrix of single-cell gene expression data.
+* GRN:
+* labels：
+* Label_index：
 
-
-
-The output of the function including the result of communication among single cells and the result of communication among different cell types. User can save the inferred results using the function "lucky.MDIC3_scoresave".
-  
-* 
-
-More details can be found in 2.1 Choice1.
+* The output of this function including the result of communication among single cells and the result of communication among different cell types. User can save the inferred results using the function "lucky.MDIC3_scoresave(ccc_adjacency, type_adjacency, labels)"
 
 #### There is a simple example below:
 
@@ -217,12 +211,6 @@ if __name__ == '__main__':
     lucky.MDIC3_scoresave(ccc_adjacency, type_adjacency, labels)
 
 ```
-
-
-
-
-
-
 
 
 ## Identify L-R pairs from cell-cell communication
