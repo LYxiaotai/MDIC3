@@ -150,20 +150,21 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
   
   (1) Users can choose to first calculate the GRN using GNIPLR and then infer the cell-cell communication, the function is "lucky.GRN_GNIPLR(AA, gene_exp, step, process)":
 
-      AA：A Python nested list，storing single-cell data expression, with the length of the list equal to the number of genes, the length of each sub-list equal to the number of cells, and the values in the list indicating the expression of each gene on each cell
-      gene_exp: a Python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary.
-      step：an integer, the user must select the step size for GNIPLR block calculation.
-      process：an integer, the user must select the number of work processes used.
+         AA：A Python nested list，storing single-cell data expression, with the length of the list equal to the number of genes, the length of each sub-list equal to the number of cells, and the values in the list indicating the expression of each gene on each cell
+         gene_exp: a Python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary.
+         step：an integer, the user must select the step size for GNIPLR block calculation.
+         process：an integer, the user must select the number of work processes used.
 
    (2) Users can also choose to import the GRN results calculated by other methods. 
 
   
 * 2.2.2 Users can use the function "lucky.MDIC3_score(AA, GRN, labels, label_index)" to infer the cell-cell communications:
-
-      AA：A Python nested list，storing single-cell data expression, with the length of the list equal to the number of genes, the length of each sub-list equal to the number of cells, and the values in the list indicating the expression of each gene on each cell.
-      GRN: A Python numpy array, storing the GRN adjacency matrix.
-      labels：A Python list, storing all the cell types, with the length of the list equal to the number of cell types.
-      Label_index：a Python dictionary, where each cell type name corresponds to a key of the dictionary, and the index of each cell is stored as a list of numbers in the values of the dictionary.
+  
+      Parameters：
+         AA：A Python nested list，storing single-cell data expression, with the length of the list equal to the number of genes, the length of each sub-list equal to the number of cells, and the values in the list indicating the expression of each gene on each cell.
+         GRN: A Python numpy array, storing the GRN adjacency matrix.
+         labels：A Python list, storing all the cell types, with the length of the list equal to the number of cell types.
+         Label_index：a Python dictionary, where each cell type name corresponds to a key of the dictionary, and the index of each cell is stored as a list of numbers in the values of the dictionary.
 
    The output of this function including the result of communication among single cells and the result of communication among different cell types. 
 
