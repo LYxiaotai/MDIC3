@@ -150,6 +150,7 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
   
   (1) Users can choose to first calculate the GRN using GNIPLR and then infer the cell-cell communication, the function is "lucky.GRN_GNIPLR(AA, gene_exp, step, process)":
 
+     Parameters：
          AA：A Python nested list，storing single-cell data expression, with the length of the list equal to the number of genes, the length of each sub-list equal to the number of cells, and the values in the list indicating the expression of each gene on each cell
          gene_exp: a Python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary.
          step：an integer, the user must select the step size for GNIPLR block calculation.
