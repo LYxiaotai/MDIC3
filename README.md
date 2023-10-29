@@ -54,7 +54,7 @@ We suggest the users to check the two types of input data carefully before runni
 
 We suggest the users to input the single cell gene expression data containing at least 10 cells.
 
-### 2. MDIC3-Inference
+### 2. MDIC3 cell-cell communication Inference
 
 The core of MDIC3 is to infer the regulatory relationships among cells based on the regulatory relationships among genes. MDIC3 utilizes GRNs to extract gene regulatory information. We used the [GNIPLR](https://github.com/zyllluck/GNIPLR) algorithm (Gene networks inference based on projection and lagged regression) to infer GRN in our paper. GNIPLR projected gene data twice using the LASSO projection algorithm and the linear projection approximation to produce a linear and monotonous pseudo-time series, and then determined the direction of regulation in combination with lagged regression analyses. You can find more details of GNIPLR in the original article [(doi: 10.1093/bioinformatics/btab099)](https://doi.org/10.1093/bioinformatics/btab099). 
   
@@ -64,7 +64,7 @@ It should be noted that the MDIC3 is not limited to GNIPLR. Any tool that infers
 
 Here, we provide two calculation choices, the parameter is shown below:
 
-##### usage1:
+#### usage1:
 
 *  users can choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications. 
 
@@ -77,7 +77,7 @@ python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GN
 
 ```
 
-##### usage2:  
+#### usage2:  
 
 * users can also choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
 
@@ -119,7 +119,7 @@ The file '[cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/tes
 
 Users can choose two calculation choices to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
 
-##### usage1: choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
+#### usage1: choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
 
 ``` python
 # Enter the following command line in the Python terminal
@@ -133,7 +133,7 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 
 
 
-##### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
+#### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
 
 ``` python
 # The GRN.txt is the GRN adjacency matrix calculation results for the input single-cell gene expression data
@@ -180,7 +180,7 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 
 #### There is a simple example below:
 
-##### usage1: choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
+#### usage1: choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
 
 ``` python
 
@@ -203,7 +203,7 @@ if __name__ == '__main__':
 
 ```
 
-##### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
+#### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
 
 * When users choose to import the GRN results calculated by other methods. If there is a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
   
@@ -231,11 +231,11 @@ if __name__ == '__main__':
 
 The main purpose of applying cell-cell communication analysis is to explain the cell functions through L-R pairs. In our paper, we use a simple method to extract L-R pairs from cell-cell communication.
 
-#### The "[MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main)" can be used to extract L-R pairs from cell-cell communication.
+### 1. Required input data
 
-#### Required input data
+MDIC3 requires three types of input data:
 
-##### 1. single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (1). single-cell gene expression data, e.g., [LS_testexp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -248,7 +248,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-##### 2. scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (2) scRNAseq metadata, e.g., [LS_labels.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
@@ -260,7 +260,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 |**cell3**|**Cell-type2**|
 |...|...|
 
-##### 3. ligand-receptor information, e.g., [LR_human.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data)
+#### (3) ligand-receptor information, e.g., [LR_human.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data)
 
 * The ligand-receptor information must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column.
 
@@ -270,14 +270,20 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 
 * Considering that [CellChatDB](https://github.com/sqjin/CellChat) L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper. You can download [here](https://github.com/LYxiaotai/MDIC3/tree/main/data).
 
-#### usage:
+We suggest the users to check the two types of input data carefully before running MDIC3. 
+
+### 2. MDIC3 L-R pairs identification
+
+#### 2.1 Choice1: Use the "[MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main)" to extract L-R pairs from cell-cell communication.
 
 * Note that the cell type name you write into the command must correspond to the cell type name contained in your scRNAseq metadata file.
 * Remember to change the ligand-receptor information according to the type of species you are using.
 
+#### usage:
+
 ``` python
 # Enter the following command line in the Python terminal
-python MDIC3_LR.py -exp='gene_exp.txt' -label='cell_label.txt' -lrdb='LR_human.txt' -ltype='celltype1' -rtype='celltype2' -out=target
+python MDIC3_LR.py -exp='LS_testexp.txt' -label='LS_labels.txt' -lrdb='LR_human.txt' -ltype='InflameFIB' -rtype='InflameDC' -out=target
 ```
 
 ##### Options and arguments:
@@ -290,6 +296,9 @@ python MDIC3_LR.py -exp='gene_exp.txt' -label='cell_label.txt' -lrdb='LR_human.t
     -out: the directory to store the L-R identification results. 
 
 * The output of MDIC3_LR.py will be put in your "target" directory. The output file is a txt file named 'target_LR' that includes the L-R pairs involved in the cellular communication process you entered. The output file also contains the Pearson correlation coefficients and significance p-values corresponding to each L-R pair.
+
+
+#### 2.2 Choice2: Use the MDIC3 Python package to extract L-R pairs from cell-cell communication.
 
 
 
