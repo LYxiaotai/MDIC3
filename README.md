@@ -310,6 +310,11 @@ python MDIC3_LR.py -exp='LS_testexp.txt' -label='LS_labels.txt' -lrdb='LR_human.
          label_cell: a Python dictionary, where each cell type name corresponds to a key of the dictionary, and the name of each cell is stored as a list of numbers in the values of the dictionary.
          cellname: A Python list, storing the single cell names
          gene_exp: a Python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary.
+  
+* User can save the inferred results using the function "lucky.MDIC3_LRsave(sorted_LRcorr)" (optional)
+
+       Parameters：
+         sorted_LRcorr：the result of L-R pairs extracted from cell-cell communication
 
 #### There is a simple example below:
 
