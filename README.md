@@ -169,9 +169,11 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 
 
 * 2.2.3 User can save the inferred results using the function "lucky.MDIC3_scoresave(ccc_adjacency, type_adjacency, labels)" (optional)
-      ccc_adjacency：the result of communication among single cells 
-      type_adjacency: the result of communication among different cell types
-      labels：A Python list, storing all the cell types, with the length of the list equal to the number of cell types.
+  
+      Parameters：
+         ccc_adjacency：the result of communication among single cells 
+         type_adjacency: the result of communication among different cell types
+         labels：A Python list, storing all the cell types, with the length of the list equal to the number of cell types.
 
 
 #### There is a simple example below:
