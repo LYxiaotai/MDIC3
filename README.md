@@ -300,9 +300,36 @@ python MDIC3_LR.py -exp='LS_testexp.txt' -label='LS_labels.txt' -lrdb='LR_human.
 
 #### 2.2 Choice2: Use the MDIC3 Python package to extract L-R pairs from cell-cell communication.
 
+* Users can use the function "lucky.MDIC3_SortLR(L, R, LR,target,label_cell,cellname,gene_exp)" to extract L-R pairs from cell-cell communication:
+  
+      Parameters：
+         L：A Python list, storing each ligand in L-R information
+         R: A Python list, storing each receptor in L-R information
+         LR：A Python list, storing each L-R pair in L-R information
+         target：A Python list, storing the cell type pairs you want to analyze
+         label_cell: a Python dictionary, where each cell type name corresponds to a key of the dictionary, and the name of each cell is stored as a list of numbers in the values of the dictionary.
+         cellname: A Python list, storing the single cell names
+         gene_exp: a Python dictionary, where each gene name corresponds to a key of the dictionary, and the expression of each gene is stored as a list of numbers in the values of the dictionary.
+
+#### There is a simple example below:
+
+``` python
+
+from MDIC3 import lucky
+
+if __name__ == '__main__':
+
+    AA, gene_exp, cellname = lucky.readexp('LS_testexp.txt')
+    labels, label_index, label_cell = lucky.readlabel('LS_labels.txt')
+    L, R, LR = lucky.readLRDB('LR_human.txt')
+    LRexp = lucky.LR_exp(LR, L, R, gene_exp, label_cell, cellname)
+    target = ['InflameFIB','InflameDC']
+    sorted_LRcorr = lucky.MDIC3_SortLR(L, R, LR,target,label_cell,cellname,gene_exp)
+    #print(sorted_LRcorr)
+    lucky.MDIC3_LRsave(sorted_LRcorr)
 
 
-
+```
 
 
 ## Visualize the MDIC3 inference results
