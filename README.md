@@ -16,7 +16,9 @@ We provide two choices to use MDIC3:
 pip install MDIC3
 
 ```
-   
+
+Note that we recommend that users use script files for greater convenience.
+
 ## Inference of cell-cell communication
 
 This tutorial is the example analysis with MDIC3 on a test single-cell gene expression profile that contains 2000 genes, 1394 cells, 7 cell types.
