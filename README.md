@@ -9,7 +9,7 @@ We proposed a new method MDIC3 (Matrix Decomposition to Infer Cell-Cell Communic
 ## How to use MDIC3
 
 We provide two choices to use MDIC3:
-1. You can download the [MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main) and [MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main) and enter the command line in the Python terminal.
+1. You can download the [MDIC3.py](https://github.com/LYxiaotai/MDIC3/tree/main) and [MDIC3_LR.py](https://github.com/LYxiaotai/MDIC3/tree/main) and enter the command line in the Python terminal. We recommend that users use the two Python scripts for greater convenience.
 2. You can download the MDIC3 Python package to use the MDIC3 algorithm. MDIC3 Python package can be easily installed:
 ``` python
 
@@ -17,7 +17,6 @@ pip install MDIC3
 
 ```
 
-Note that we recommend that users use script files for greater convenience.
 
 ## Inference of cell-cell communication
 
