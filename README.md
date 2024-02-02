@@ -25,7 +25,7 @@ This tutorial is the example analysis with MDIC3 on a test single-cell gene expr
 
 MDIC3 requires two types of input data:
 
-#### (1). single-cell gene expression data, e.g., [gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (1). single-cell gene expression data, e.g., [exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -38,16 +38,16 @@ MDIC3 requires two types of input data:
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-#### (2). scRNAseq metadata, e.g., [cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (2). scRNAseq metadata, e.g., [metadata.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
 * Note that the first column of the scRNAseq metadata should match exactly with the first row of the single-cell gene expression data. An example snapshot of the input scRNAseq metadata format is shown below.
 
-|cell1|Cell-type1|
+|cell1|Celltype1|
 |-:|:-|
-|**cell2**|**Cell-type1**|
-|**cell3**|**Cell-type2**|
+|**cell2**|**Celltype1**|
+|**cell3**|**Celltype2**|
 |...|...|
 
 We suggest the users to check the two types of input data carefully before running MDIC3. 
@@ -94,13 +94,12 @@ python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='ot
     -grnchoose: availability of gene regulatory networks.
     -process: if -grnchoose =='GNIPLR', the user must select the number of work processes used.
     -step: if -grnchoose =='GNIPLR', the user must select the step size for GNIPLR block calculation.
-    -grnsave: if -grnsave =='TRUE', the results of the GRN calculated by GNIPLR will be saved to a txt file.
     -grn: if -grnchoose =='other', the user must provide the gene regulatory network adjacency matrix *.txt file.
     -out: the directory to store the MDIC3 results.
 
 * When users choose to calculate the GRN by using GNIPLR, considering that single cell gene expression data always contains a large number of genes and it will take a long time to compute the GRN, we have improved the computational process of GNIPLR through two paths to increasing the computational efficiency of GRN. One path is to use the Python-multiprocessing package process pool, where users should choose the number of processes according to their computer configuration，and the “multiprocessing” package is required. Another path is calculated by blocking the target GRN matrix. When the number of genes is less than 3000, users can set the '-step' parameter to the number of genes or a smaller value than the number of genes. When the number of genes is less than 3000, we suggest users set the '-step' parameter to a value of 3000 or less.
 
-* When users choose to import the GRN results calculated by other methods, users must provide the calculated GRN results, which must be a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+* When users choose to import the GRN results calculated by other methods, users must provide the calculated GRN results, which must be a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)(Note that you should download the GRN zip file and extract it to get the GRN text file)
 
 * The output of MDIC3 consists of two txt files: 
 
@@ -108,14 +107,12 @@ python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='ot
 
 2) 'cellular_communication.txt' is the result of communication among single cells. This is a file that only contains the numeric matrix of the results of communication results among single cells. If the value in row i and column j is greater than 0, it means that the communication signal is sent from the i-th cell and received by the j-th cell. If the value in row i and column j is less than 0, it means that the communication signal is sent from the j-th cell and received by the i-th cell. The absolute value of the value in row i and column j indicates the communication strength between cell i and cell j.
 
-Note that if users choose to calculate the GRN by using GNIPLR, the user can choose whether or not to save the GRN calculation results. If '-grnsave==TRUE', an additional txt file will be generated for saving the GRN adjacency matrix. Note that when the user selects '-grnsave==true', the GRN results file to be saved will be very large, a GRN file containing 20,000 genes may require 10G of storage space. We recommend that users select a storage location with sufficient storage space.
-
 
 #### There is a simple example below:
 
-The file '[gene_exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test single-cell gene expression data that contains 39 genes, 20 cells.
+The file '[exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)' is a test single-cell gene expression data that contains 39 genes, 20 cells.
 
-The file '[cell_label.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
+The file '[metadata.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
 
 Users can choose two calculation choices to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
 
@@ -129,8 +126,7 @@ python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -pro
 
 ```
 
-The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. If '-grnsave==TRUE', an additional txt file '[GRN_GNIPLR.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be generated for saving the GRN adjacency matrix and put in your "target" directory.
-
+The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' will be put in your "target" directory. 
 
 
 #### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
@@ -141,10 +137,10 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=GRN.txt -out=target
 ```
 
-The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data/result)' will be put in your "target" directory. 
+The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' will be put in your "target" directory. 
 
 
-#### 2.2 Choice2: Use the MDIC3 Python package to infer cell-cell communications.
+#### 2.2Choice2: Use the MDIC3 Python package to infer cell-cell communications.
 
  * The MDIC3 Python package also provides two choices to obtain the GRN.
   
@@ -205,7 +201,7 @@ if __name__ == '__main__':
 
 #### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
 
-* When users choose to import the GRN results calculated by other methods. If there is a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+* When users choose to import the GRN results calculated by other methods. If there is a *.txt file containing only the numerical results of the GRN adjacency matrix, e.g., [GRN.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/test_data)
   
 ``` python
 
@@ -235,7 +231,7 @@ The main purpose of applying cell-cell communication analysis is to explain the 
 
 MDIC3 requires three types of input data:
 
-#### (1). single-cell gene expression data, e.g., [LS_testexp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (1). single-cell gene expression data, e.g., [exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)
 
 * The single-cell gene expression data must be a *.txt file, while each row represents a gene and each column represents a cell. 
 
@@ -248,19 +244,19 @@ MDIC3 requires three types of input data:
 |**Gene3**|0|6.051|0|...|
 |...|...|...|...|...|
 
-#### (2) scRNAseq metadata, e.g., [LS_labels.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data/test_data)
+#### (2) scRNAseq metadata, e.g., [metadata.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)
 
 * The scRNAseq metadata must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column. 
 
 * Note that the first column of the scRNAseq metadata should match exactly with the first row of the single-cell gene expression data. An example snapshot of the input scRNAseq metadata format is shown below.
 
-|cell1|Cell-type1|
+|cell1|Celltype1|
 |-:|:-|
-|**cell2**|**Cell-type1**|
-|**cell3**|**Cell-type2**|
+|**cell2**|**Celltype1**|
+|**cell3**|**Celltype2**|
 |...|...|
 
-#### (3) ligand-receptor information, e.g., [LR_human.txt](https://github.com/LYxiaotai/MDIC3/tree/main/data)
+#### (3) ligand-receptor information, e.g., [Human_LR.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)
 
 * The ligand-receptor information must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column.
 
@@ -268,7 +264,7 @@ MDIC3 requires three types of input data:
 
 * Note that if a ligand corresponds to a subunit architecture receptor, e.g. IL6 receptors IL6R and IL6ST, it is represented in the format "L - (R1+R2)".
 
-* Considering that [CellChatDB](https://github.com/sqjin/CellChat) L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper. You can download [here](https://github.com/LYxiaotai/MDIC3/tree/main/data).
+* Considering that [CellChatDB](https://github.com/sqjin/CellChat) L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper.
 
 We suggest the users to check the two types of input data carefully before running MDIC3. 
 
