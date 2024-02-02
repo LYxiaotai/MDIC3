@@ -19,7 +19,7 @@ pip install MDIC3
    
 ## Inference of cell-cell communication
 
-This tutorial is the example analysis with MDIC3 on a test single-cell gene expression profile that contains 39 genes, 20 cells, 3 cell types.
+This tutorial is the example analysis with MDIC3 on a test single-cell gene expression profile that contains 2000 genes, 1394 cells, 7 cell types.
 
 ### 1. Required input data
 
@@ -72,9 +72,6 @@ Here, we provide two calculation choices, the parameter is shown below:
 # Enter the following command line in the Python terminal
 python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process=process_value -step=GRN_calculation_step -out=results_output_fold
 
-# If the users want to save the results of the GRN calculation of GNIPLR, they can do so by adding -grnsave =='TRUE'
-python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='GNIPLR' -process=process_value -step=GRN_calculation_step -grnsave='TRUE' -out=results_output_fold
-
 ```
 
 #### usage2:  
@@ -105,24 +102,22 @@ python MDIC3.py -exp=scRNA_expression_file -label=cell_label_file -grnchoose='ot
 
 1) 'celltype_communication.txt' is the result of communication among different cell types, while the first column and the first row represent different cell labels. More specifically, the value in row i and column j indicates the strength of the communication signal sent from the i-th cell type and received by the j-th cell type.
 
-2) 'cellular_communication.txt' is the result of communication among single cells. This is a file that only contains the numeric matrix of the results of communication results among single cells. If the value in row i and column j is greater than 0, it means that the communication signal is sent from the i-th cell and received by the j-th cell. If the value in row i and column j is less than 0, it means that the communication signal is sent from the j-th cell and received by the i-th cell. The absolute value of the value in row i and column j indicates the communication strength between cell i and cell j.
+2) 'cellular_communication.txt' is the result of communication among different single cells, while the first column and the first row represent different cells. More specifically, the value in row i and column j indicates the strength of the communication signal sent from the i-th cells and received by the j-th cells.
 
 
 #### There is a simple example below:
 
-The file '[exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)' is a test single-cell gene expression data that contains 39 genes, 20 cells.
+The file '[exp.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)' is a test human single-cell gene expression data that contains 2000 genes, 1394 cells.
 
-The file '[metadata.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)' is a test scRNAseq metadata that contains 3 cell types corresponding to the 20 cells.
+The file '[metadata.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data)' is a test scRNAseq metadata that contains 7 cell types corresponding to the 1394 cells.
 
-Users can choose two calculation choices to calculate the cell-cell communications results for the 20 cells and the cell type communication results for the 3 cell types. The usages are as follows:
+Users can choose two calculation choices to calculate the cell-cell communications results for the 1394 cells and the cell type communication results for the 7 cell types. The usages are as follows:
 
 #### usage1: choose to first calculate the GRN using GNIPLR and then infer the cell-cell communications
 
 ``` python
 # Enter the following command line in the Python terminal
-python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -process=2 -step=15 -out=target
-# If the users want to save the results of the GRN calculation of GNIPLR, they can do so by adding -grnsave =='TRUE'
-python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='GNIPLR' -process=2 -step=15 -grnsave='TRUE' -out=target
+python MDIC3.py -exp=exp.txt -label=metadata.txt -grnchoose='GNIPLR' -process=3 -step=500 -out=target
 
 ```
 
@@ -134,7 +129,7 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 ``` python
 # The GRN.txt is the GRN adjacency matrix calculation results for the input single-cell gene expression data
 # Enter the following command line in the Python terminal
-python MDIC3.py -exp=gene_exp.txt -label=cell_label.txt -grnchoose='other' -grn=GRN.txt -out=target
+python MDIC3.py -exp=exp.txt -label=metadata.txt -grnchoose='other' -grn=GRN.txt -out=target
 ```
 
 The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' will be put in your "target" directory. 
@@ -183,12 +178,12 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 from MDIC3 import lucky
 if __name__ == '__main__':
 
-    AA, gene_exp, cellname = lucky.readexp('gene_exp.txt')
-    labels, label_index, label_cell = lucky.readlabel('cell_label.txt')
+    AA, gene_exp, cellname = lucky.readexp('exp.txt')
+    labels, label_index, label_cell = lucky.readlabel('metadata.txt')
 
     # calculate the GRN using GNIPLR
-    step = 5        # the user must select the step size for GNIPLR block calculation.
-    process = 2     # the user must select the number of work processes used.
+    step = 500        # the user must select the step size for GNIPLR block calculation.
+    process = 3     # the user must select the number of work processes used.
     GRN = lucky.GRN_GNIPLR(AA, gene_exp, step, process)
 
     # Infer the cell-cell communication
@@ -208,8 +203,8 @@ if __name__ == '__main__':
 from MDIC3 import lucky
 if __name__ == '__main__':
 
-    AA, gene_exp, cellname = lucky.readexp('gene_exp.txt')
-    labels, label_index, label_cell = lucky.readlabel('cell_label.txt')
+    AA, gene_exp, cellname = lucky.readexp('exp.txt')
+    labels, label_index, label_cell = lucky.readlabel('metadata.txt')
 
     # import the GRN calculated by other methods or tools
     GRN = np.loadtxt(‘GRN.txt')
@@ -260,9 +255,9 @@ MDIC3 requires three types of input data:
 
 * The ligand-receptor information must be a *.txt file, while the first column represents cells and the second column represents the corresponding cell labels for the cells in the first column.
 
-* The file contains only a single column of data with a column name. Each row represents a pair of ligand-receptor pairs, recorded in the format "L - R".
+* The file contains only a single column of data with a column name. Each row represents a pair of ligand-receptor pairs.
 
-* Note that if a ligand corresponds to a subunit architecture receptor, e.g. IL6 receptors IL6R and IL6ST, it is represented in the format "L - (R1+R2)".
+* Note that if a ligand corresponds to a subunit architecture receptor, e.g. IL6 receptors IL6R and IL6ST, it is represented in the format "L (R1+R2)".
 
 * Considering that [CellChatDB](https://github.com/sqjin/CellChat) L-R database contains both human and mouse ligand-receptor information, we used the human and mouse ligand-receptor genes obtained from CellChatDB to further analyze in the section "Identifying key L-R pairs from cell-cell communication" of our paper.
 
@@ -279,7 +274,7 @@ We suggest the users to check the two types of input data carefully before runni
 
 ``` python
 # Enter the following command line in the Python terminal
-python MDIC3_LR.py -exp='LS_testexp.txt' -label='LS_labels.txt' -lrdb='LR_human.txt' -ltype='InflameFIB' -rtype='InflameDC' -out=target
+python MDIC3_LR.py -exp='exp.txt' -label='metadata.txt' -lrdb='Human_LR.txt' -ltype='InflameFIB' -rtype='InflameDC' -out=target
 ```
 
 ##### Options and arguments:
@@ -320,9 +315,9 @@ from MDIC3 import lucky
 
 if __name__ == '__main__':
 
-    AA, gene_exp, cellname = lucky.readexp('LS_testexp.txt')
-    labels, label_index, label_cell = lucky.readlabel('LS_labels.txt')
-    L, R, LR = lucky.readLRDB('LR_human.txt')
+    AA, gene_exp, cellname = lucky.readexp('exp.txt')
+    labels, label_index, label_cell = lucky.readlabel('metadata.txt')
+    L, R, LR = lucky.readLRDB('Human_LR.txt')
     LRexp = lucky.LR_exp(LR, L, R, gene_exp, label_cell, cellname)
     target = ['InflameFIB','InflameDC']
     sorted_LRcorr = lucky.MDIC3_SortLR(L, R, LR,target,label_cell,cellname,gene_exp)
