@@ -121,7 +121,7 @@ python MDIC3.py -exp=exp.txt -label=metadata.txt -grnchoose='GNIPLR' -process=3 
 
 ```
 
-The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' will be put in your "target" directory. 
+The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/results)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/results)' will be put in your "target" directory. 
 
 
 #### usage2: choose to import the GRN calculated by other methods or tools and then infer cell-cell communications using MDIC3.
@@ -132,7 +132,7 @@ The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/M
 python MDIC3.py -exp=exp.txt -label=metadata.txt -grnchoose='other' -grn=GRN.txt -out=target
 ```
 
-The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/result)' will be put in your "target" directory. 
+The output inluding '[celltype_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/results)' and '[cellular_communication.txt](https://github.com/LYxiaotai/MDIC3/tree/main/protocol_Data/results)' will be put in your "target" directory. 
 
 
 #### 2.2Choice2: Use the MDIC3 Python package to infer cell-cell communications.
