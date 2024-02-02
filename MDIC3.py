@@ -338,9 +338,7 @@ if __name__ == '__main__':
         print("Complete the GRN calculation.")
         print("Complete the GRN calculation time: " + time.asctime())
 
-        GRN = GRN.toarray()
-        np.savetxt(fold + os.sep + 'GRN_GNIPLR.txt', GRN)
-      
+        GRN = GRN.toarray()      
 
 
 
